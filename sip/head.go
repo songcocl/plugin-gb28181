@@ -185,6 +185,9 @@ func (c *Contact) Parse(str string) (err error) {
 			c.Params = make(map[string]string)
 		}
 		arr2 := strings.Split(one, "=")
+		if len(arr2) < 2 {
+			continue
+		}
 		k, v := arr2[0], arr2[1]
 		c.Params[k] = v
 	}
