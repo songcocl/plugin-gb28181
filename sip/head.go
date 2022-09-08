@@ -147,10 +147,14 @@ func (c *Contact) Parse(str string) (err error) {
 
 	var uriDone = false
 	if strings.ContainsAny(str, "<>") {
+		fmt.Println("sjz-str:" + str)
 		n2 := strings.IndexByte(str, '<')
 		n3 := strings.IndexByte(str, '>')
 		if n2 == -1 || n3 == -1 {
 			err = errors.New("parse contact-uri failed")
+			return
+		}
+		if (n2+1 > n3) || (n2+1) >= len(str) || n3 >= len(str) {
 			return
 		}
 		c.Uri, err = parseURI(str[n2+1 : n3])
@@ -664,7 +668,7 @@ func (a *Authorization) Parse(str string) error {
 			a.response = v
 		}
 		if strings.Contains(tmp[0], "algorithm") {
-			a.algorithm = strings.Trim(v,"H:")
+			a.algorithm = strings.Trim(v, "H:")
 		}
 	}
 	return nil
