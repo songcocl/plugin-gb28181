@@ -1,4 +1,4 @@
-module github.com/Monibuca/plugin-gb28181/v3
+module github.com/songcocl/plugin-gb28181/v3
 
 go 1.13
 
